@@ -5,6 +5,15 @@ function Tasks() {
 	
 	var adb = new AppStore("tasksApp");
         
+        // adding loadTaskList
+	function loadTaskList() {
+		var tasks = adb.getValue("taskList");
+		if(tasks){
+			for( var i in tasks) {
+			addTaskElement(tasks[i]);
+			}
+		}
+        } // end of loadTaskList        
 	// adding saveTaskList to adb
 	function saveTaskList() {
 		var tasks = [];
@@ -102,7 +111,7 @@ function Tasks() {
 	} // end of task element
 
 	this.start = function() {
-
+		
 		$("#new-task-name").keypress(function(e) {
 			if(e.which == 13){ // enter key is pressed
 				addTask();
@@ -112,7 +121,9 @@ function Tasks() {
 		}).focus();
 
 		$("#app>header").append(" ready..." );
-
+               
+		// load tasks
+		loadTaskList();
 		setStatus(version);
 	}; 
 
