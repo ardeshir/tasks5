@@ -51,5 +51,8 @@ function AppStore(appName) {
 		}
 		return true;
 	};
+        this.contains = function(key) {
+		return this.getValue(key) !== null;
+	};
 
 } // end of AppStore 
