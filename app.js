@@ -14,7 +14,7 @@ function Tasks() {
 
 		if(taskName) {
 			addTaskElement(taskName);
-			// reset test filed
+			// reset text field
 			$("#new-task-name").val("").focus();
 		} // end of if
 
