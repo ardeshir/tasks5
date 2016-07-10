@@ -8,6 +8,15 @@ function Tasks() {
 	} // end of set Status
 
 	this.start = function() {
+
+		$(#new-task-name").keypress(function(e) {
+			if(e.which == 13){ // endter key
+				addTask();
+				return false;
+			} // end if 
+                                         
+		}).focus();
+
 		$("#app>header").append(version);
 
 		setStatus("ready...");
