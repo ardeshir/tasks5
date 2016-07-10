@@ -20,9 +20,28 @@ function Tasks() {
 
 
 	} // end of addTask
+       
+        // adding onEdit TaskName 
+	function onEditTaskName($span) {
+		$span.hide()
+		     .siblings("input.task-name")
+		     .val($span.text())
+   		     .show()
+		     .focus();
+	} // end of onEdit
+
+	// adding onChangeTaskName
+	function onChangeTaskName($input) {
+		$input.hide();
+		var $span = $input.siblings("span.task-name");
+		if($input.val()) {
+		  $span.text($input.val());
+		}
+		$span.show();
+
+	} // end of onChange
 
 	// adding Task Element
-
 	function addTaskElement(taskName) {
 
 		var $task = $("#task-template .task").clone();
@@ -39,7 +58,13 @@ function Tasks() {
 			$task.insertAfter($task.next());
 		});
 	
-
+		$("span.task-name", $task).click(function() {
+			onEditTaskName($(this));
+		});
+                 
+		$("input.task-name", $task).change(function() {
+			onChangeTaskName($(this));
+		});
 
 	} // end of task element
 
