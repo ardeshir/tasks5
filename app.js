@@ -25,7 +25,13 @@ function Tasks() {
 
 	function addTaskElement(taskName) {
 		var $task = $("<li></li>");
-		$task.text(taskName);
+		var $delete = $("<button class='delete'>X</button>");
+                $task.append("<span class='task-name'>" + taskName + "</span>")
+		     .append($delete);
+
+		$delete.click(function(){ $task.remove(); });
+
+		/* $task.text(taskName); */
 		$("#task-list").append($task);
 
 	} // end of task element
