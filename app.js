@@ -26,7 +26,7 @@ function Tasks() {
 	function addTaskElement(taskName) {
 		var $task = $("<li></li>");
 		$task.text(taskName);
-		$("task-list").append($task);
+		$("#task-list").append($task);
 
 	} // end of task element
 
