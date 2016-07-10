@@ -26,14 +26,24 @@ function Tasks() {
 	function addTaskElement(taskName) {
 		var $task = $("<li></li>");
 		var $delete = $("<button class='delete'>X</button>");
-                $task.append("<span class='task-name'>" + taskName + "</span>")
+		var $moveUp = $("<button class='move-up'>^</button>");
+		var $moveDown = $("<button class='move-down'>v</button>");
+		$task.append($moveUp)
+		     .append($moveDown)
+                     .append("<span class='task-name'>" + taskName + "</span>")
 		     .append($delete);
 
 		$delete.click(function(){ $task.remove(); });
 
 		/* $task.text(taskName); */
 		$("#task-list").append($task);
-
+		
+		$moveUp.click(function() {
+			$task.insertBefore($task.prev());
+		});
+		$moveDown.click(function() {
+			$task.insertAfter($task.next());
+		});
 	} // end of task element
 
 	this.start = function() {
