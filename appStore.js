@@ -31,7 +31,7 @@ function AppStore(appName) {
 	this.getKeys = function(filter) {
 		var keys = [];
 		if(this.localStorageSupported) {
-			for (var in localStorage) {
+			for (var key in localStorage) {
 				if (isAppKey(key)) {
 					// remove the prefix from the key
 					if (prefix) key = key.slice(prefix.length);
