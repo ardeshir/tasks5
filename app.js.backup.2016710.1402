@@ -5,11 +5,11 @@ function Tasks() {
 	
 	var adb = new AppStore("tasksApp");
         
-	// adding saveTaskList to adb
-	function saveTaskList() {
+	// adding saveTasks to adb
+	function saveTasks() {
 		var tasks = [];
 		$("#task-list .task span.task-name").each(function() {
-			tasks.push($(this).text())
+			tasks.pusj($(this).text())
 		});
 		adb.setValue("taskList", tasks);
 	} // end of saveTasks
@@ -29,7 +29,7 @@ function Tasks() {
 			$("#new-task-name").val("").focus();
 		} // end of if
 
-               saveTaskList();
+
 	} // end of addTask
        
         // adding onEdit TaskName 
@@ -49,7 +49,7 @@ function Tasks() {
 		  $span.text($input.val());
 		}
 		$span.show();
-                saveTaskList();
+
 	} // end of onChange
 
 	// adding Task Element
@@ -59,18 +59,14 @@ function Tasks() {
 		$("span.task-name", $task).text(taskName);
                                                              
 		$("#task-list").append($task);
-
 	        $("button.delete", $task).click(function() {
-			// $task.remove();
-			removeTask($task);
+			$task.remove();
 		});
 		$("button.move-up", $task).click(function() {
-			// $task.insertBefore($task.prev());
-			moveTask($task, true);
+			$task.insertBefore($task.prev());
 		});
 		$("button.move-down", $task).click(function() {
-			// $task.insertAfter($task.next());
-			moveTask($task, false);
+			$task.insertAfter($task.next());
 		});
 	
 		$("span.task-name", $task).click(function() {
@@ -83,22 +79,7 @@ function Tasks() {
 		.blur(function() {
 			$(this).hide().siblings("span.task-name").show();
 		});
-                
-		// adding Task functions
 
-		function removeTask($task) {
-			$task.remove();		
-			saveTaskList();
-		}
-
-		function moveTask($task, moveUp) {
-			if(moveUp) {
-				$task.insertBefore($task.prev());
-			} else {
-				$task.insertAfter($task.next());
-			}
-			saveTaskList();
-		}
 	} // end of task element
 
 	this.start = function() {
